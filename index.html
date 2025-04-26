@@ -219,7 +219,7 @@
                         : str; // 不存在返回原字符串
                 },
 
-                async loadSwaps(isRefresh = false, limit = 25) {
+                async loadSwaps(isRefresh = false, limit = 50) {
                     if (isRefresh) {
                         this.existingHashes.clear(); // 重置时清空哈希集合
                         this.offset = 0;
@@ -501,7 +501,7 @@
                     this.refreshKey++; // 强制重新渲染图标
                     try {
                         this.currentTime = Date.now();
-                        await this.loadSwaps(true, 10);
+                        await this.loadSwaps(true, 30);
                     } catch (error) {
                         console.error('刷新失败:', error);
                     }
@@ -518,7 +518,7 @@
                 },
 
                 async loadNextPage() {
-                    await this.loadSwaps(false, 10);
+                    await this.loadSwaps(false, 20);
                 },
             }
         }).mount('#app');
